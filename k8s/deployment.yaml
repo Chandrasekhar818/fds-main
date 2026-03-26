@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fds-main
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fds-main
+  template:
+    metadata:
+      labels:
+        app: fds-main
+    spec:
+      containers:
+        - name: fds-main
+          image: ghcr.io/chandrasekhar818/fds-main:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+      imagePullSecrets:
+        - name: ghcr-secret

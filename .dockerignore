@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.next/cache
+tests
+.vscode
+.git
+.gitignore
+.dev.env
+.dev.vars
+README.md
+*.log

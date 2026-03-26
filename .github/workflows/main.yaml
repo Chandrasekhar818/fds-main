@@ -1,0 +1,39 @@
+name: fds-deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  packages: write   # 🔥 required for GHCR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}   # ✅ SAFE
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/chandrasekhar818/fds-main:latest
+
+      - name: Check Docker image size
+        run: |
+          IMAGE_NAME="ghcr.io/chandrasekhar818/fds-main:latest"
+          docker pull $IMAGE_NAME
+          SIZE=$(docker image inspect $IMAGE_NAME --format='{{.Size}}')
+          SIZE_MB=$((SIZE / 1024 / 1024))
+          echo "Docker image size: $SIZE_MB MB"
