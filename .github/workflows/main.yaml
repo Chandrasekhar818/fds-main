@@ -47,6 +47,7 @@ on:
 permissions:
   contents: write     # needed to push image tag update back to repo
   packages: write     # needed for GHCR
+  id-token: write   # needed for OIDC auth to GHCR (optional, but more secure than PAT)
 
 jobs:
   build:
