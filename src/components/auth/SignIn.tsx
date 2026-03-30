@@ -30,8 +30,6 @@ export default function LoginPage() {
               />
               {state.fieldErrors?.email && (
                 <p data-testid="email-error" className="text-green-500 text-sm">
-
-                <p data-testid="email-error" className="text-blue-500 text-sm">
                   {state.fieldErrors.email[0]}
                 </p>
               )}
