@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: fds-main
-          image: ghcr.io/chandrasekhar818/fds-main:0b81628cb86b1f337d2dbc9e7bde2c78cf1fe707
+          image: ghcr.io/chandrasekhar818/fds-main:f84a88a2a223b0cdc358ae48b45dff3fae26e90d
           ports:
             - containerPort: 3000
           env:
